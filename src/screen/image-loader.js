@@ -1,9 +1,17 @@
-import { Screen } from "./screen/screen.js";
+import { ImageLoaderScreen } from "./screen.js";
 
 export class ImageLoader {
+    static instance;
+
     constructor() {
-        this.image = null;
-        this.screen = new Screen();
+        if (!ImageLoader.instance) {
+            ImageLoader.instance = this;
+
+            this.image = null;
+            this.screen = new ImageLoaderScreen();
+        }
+
+        return ImageLoader.instance;
     }
 
     async load(src) {
